@@ -136,8 +136,58 @@ void Idz(string kierunek)
 void Akcja(string co)
 {
     // TODO C1: odrzuc akcje po zakonczeniu gry.
+    if (koniec) {
+        Console.WriteLine("Gra została już zakończona. Nie można wykonać akcji.");
+        return;
+    }
+
     // TODO C2: obsluz karta, bezpiecznik, napraw, wyjdz zgodnie z kontraktem.
     // TODO C3: przy odmowie wypisz powod i wykonaj return.
+    if (co == "karta") {
+        if (pokoj != 1 || karta) {
+            Console.WriteLine("Tutaj nie ma karty do zabrania.");
+            return;
+        }
+        karta = true;
+        Console.WriteLine("Zabierasz karte.");
+    }
+
+    else if (co == "bezpiecznik") {
+        if (pokoj != 2 || bezpiecznik || zasilanie) {
+            Console.WriteLine("Nie mozna wlaczyc bezpiecznika.");
+            return;
+        }
+        bezpiecznik = true;
+        Console.WriteLine("Wlaczono bezpiecznik.");
+    }
+
+    else if (co == "napraw") {
+        if (pokoj != 3 || bezpiecznik == false || zasilanie == true) {
+            Console.WriteLine("Nie mozna naprawic zasilania.");
+            return;
+        }
+        bezpiecznik = false;
+        zasilanie = true;
+        Console.WriteLine("Naprawiono zasilanie.");
+    }
+
+    else if (co == "wyjdz") {
+        if (pokoj != 4 || !karta || !zasilanie) {
+            Console.WriteLine("Nie mozesz wyjsc. Potrzebujesz karty i zasilania w pokoju 4.");
+            return;
+        }
+        wygrana = true;
+        koniec = true;
+        Console.WriteLine("Pomyslnie opuszczono");
+    }
+
+    else {
+        Console.WriteLine("Nieznana akcja: " + co);
+        return;
+    }
+
     // TODO C4: tylko po udanej akcji wywolaj raz ZakonczTure.
-    Console.WriteLine("TODO C: akcja " + co);
+    ZakonczTure();
+    
+    //Console.WriteLine("TODO C: akcja " + co);
 }
