@@ -98,38 +98,109 @@ void Status()
 // SEKCJA A: INFORMACJE I MAPA. Wlasciciel: osoba A.
 string NazwaPokoju(int numer)
 {
-    // TODO A1: zwroc nazwe dla 1, 2, 3, 4 oraz wartosc dla nieznanego numeru.
-    return "Pokoj " + numer;
+    switch (numer)
+    {
+        case 1: { return "Recepcja"; }
+        case 2: { return "Magazyn"; }
+        case 3: { return "Serwerownia"; }
+        case 4: { return "Wyjście"; }
+        default: { return "Nieznane pomieszczenie"; }
+    }
 }
 
 void Pomoc()
 {
-    // TODO A2: wypisz wszystkie komendy oraz koszt czynnosci.
-    Console.WriteLine("TODO A: pomoc, status, mapa, opis, lewo, prawo,");
-    Console.WriteLine("karta, bezpiecznik, napraw, wyjdz, start, koniec.");
+    Console.WriteLine("pomoc - Polecenia i zasady (0 Energii)");
+    Console.WriteLine("status - Dane rozgrywki (0 Energii)");
+    Console.WriteLine("mapa - Cztery pokoje i jeden znacznik pozycji (0 Energii)");
+    Console.WriteLine("opis - Rozejrzenie się w aktualnym pokoju (0 Energii)");
+    Console.WriteLine("lewo, prawo - Ruch o jeden pokój (1 Energia)");
+    Console.WriteLine("karta - Próba zabrania karty (1 Energia)");
+    Console.WriteLine("bezpiecznik - Próba zabrania bezpiecznika (1 Energia)");
+    Console.WriteLine("napraw - Próba naprawy zasilania (1 Energia)");
+    Console.WriteLine("wyjdz - Próba otwarcia drzwi (1 Energia)");
+    Console.WriteLine("start - Nowa rozgrywka (0 Energii)");
+    Console.WriteLine("koniec - Zamknięcie programu (0 Energii)");
+    Console.WriteLine("koniec to wylaczenie programu, a wyjdz to czynnosc w grze");
+    Console.WriteLine("Tylko udany ruch lub udana akcja kosztuje 1 energię");
+    Console.WriteLine("Informacje, pusty Enter, nieznana komenda, ściana, duplikat przedmiotu i odrzucona akcja są bezpłatne");
 }
 
 void Mapa()
 {
-    // TODO A3: petla for, numery 1..4, jeden znacznik aktualnego pokoju.
-    Console.WriteLine("TODO A: mapa.");
+    for (int numer = 1; numer <= 4; numer++)
+    {
+        Console.Write($"{ numer } - { NazwaPokoju(numer) }");
+        if (numer == pokoj) { Console.Write(" <-- jestes tutaj"); }
+        Console.Write('\n');
+    }
 }
 
 void Rozejrzyj()
 {
     Console.WriteLine("Jestes w: " + NazwaPokoju(pokoj));
-    // TODO A4: opis zalezy od pokoju oraz obecnosci przedmiotow/zasilania.
-    Console.WriteLine("TODO A: opis pokoju.");
+    switch (pokoj)
+    {
+        case 1:
+            {
+                if (karta) { Console.WriteLine("Karty nie ma na biurku"); }
+                else { Console.WriteLine("Karta jest na biurku"); }
+                break;
+            }
+        case 2:
+            {
+                if (bezpiecznik) { Console.WriteLine("Bezpiecznika nie ma na polce"); }
+                else { Console.WriteLine("Bezpiecznik jest na polce"); }
+
+                break;
+            }
+        case 3:
+            {
+                if (zasilanie) { Console.WriteLine("Zasilanie jest wlaczone"); }
+                else { Console.WriteLine("Zasilanie jest wylaczone"); }
+
+                break;
+            }
+        case 4:
+            {
+                if (karta) { Console.WriteLine("Masz karte"); }
+                else { Console.WriteLine("Nie masz karty"); }
+
+                if (zasilanie) { Console.WriteLine("Zasilanie jest wlaczone"); }
+                else { Console.WriteLine("Zasilanie jest wylaczone"); }
+
+                break;
+            }
+    }
 }
 
 // SEKCJA B: RUCH. Wlasciciel: osoba B.
 void Idz(string kierunek)
 {
-    // TODO B1: odrzuc ruch po zakonczeniu gry (return).
-    // TODO B2: policz nastepnyPokoj, nie zmieniaj jeszcze wspolnego pokoj.
-    // TODO B3: odrzuc nieznany kierunek i ruch poza pokoje 1..4.
-    // TODO B4: zatwierdz pokoj, wywolaj Rozejrzyj i raz ZakonczTure.
-    Console.WriteLine("TODO B: ruch " + kierunek);
+    if (koniec)
+    {
+        Console.WriteLine("Koniec gry");
+        return;
+    }
+    
+    int nastepnyPokoj = pokoj;
+    if (kierunek == "prawo") { nastepnyPokoj++; }
+    else if (kierunek == "lewo") { nastepnyPokoj--; }
+    else
+    {
+        Console.WriteLine("Nie udalo sie przejsc do tego pokoju");
+        return;
+    }
+    
+    if (nastepnyPokoj < 1 || nastepnyPokoj > 4)
+    {
+        Console.WriteLine("Nie udalo sie przejsc do tego pokoju");
+        return;
+    }
+    
+    pokoj = nastepnyPokoj;
+    Rozejrzyj();
+    ZakonczTure();
 }
 
 // SEKCJA C: PRZEDMIOTY I WYGRANA. Wlasciciel: osoba C.
