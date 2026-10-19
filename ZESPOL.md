@@ -1,8 +1,8 @@
 # Umowa zespołu
 
-Nazwa zespołu: …
-Adres repozytorium: …
-Wspólny TargetFramework: …
+Nazwa zespołu: Rybak
+Adres repozytorium: git@github.com:Prak2025X/csharp-collab-game.git
+Wspólny TargetFramework: net10.0
 Lider pierwszej integracji: Prak2025X
 Autor zapisu TESTY.md: Orzel36
 
@@ -16,7 +16,7 @@ Nie zmieniamy kontraktu bez uzgodnienia. Nie formatujemy całego Program.cs.
 
 ## Notatka na koniec pracy / po nieobecności
 
-- Działa: …
+- Działa: TAK
 - Nie działa: …
 - Następny krok i właściciel: …
 
