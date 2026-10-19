@@ -24,4 +24,4 @@ Nie zmieniamy kontraktu bez uzgodnienia. Nie formatujemy całego Program.cs.
 
 | Autor zmiany | Kto czytał | Jedna uwaga lub sprawdzony przypadek | Poprawka |
 |---|---|---|---|
-| … | … | … | … |
+| Orzel36 | Prak2025X | Po sprawdzeniu przypadkow nie ma uwag | … |
