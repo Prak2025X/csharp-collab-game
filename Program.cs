@@ -9,6 +9,7 @@ bool bezpiecznik = false;
 bool zasilanie = false;
 bool koniec = false;
 bool wygrana = false;
+int licznikRuchow = 0;
 
 // SEKCJA 0: GOTOWY SILNIK NAUCZYCIELA. Nie zmieniaj w zadaniu podstawowym.
 Start();
@@ -88,6 +89,8 @@ void Status()
 {
     Console.WriteLine("Pokoj: " + pokoj);
     Console.WriteLine("Energia: " + energia + "/" + MAKS_ENERGIA);
+    Console.WriteLine($"Pasek energii: { PasekEnergii() }");
+    Console.WriteLine($"Liczba Ruchow: { licznikRuchow }");
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
     Console.WriteLine("Zasilanie: " + zasilanie);
@@ -184,8 +187,18 @@ void Idz(string kierunek)
     }
     
     int nastepnyPokoj = pokoj;
-    if (kierunek == "prawo") { nastepnyPokoj++; }
-    else if (kierunek == "lewo") { nastepnyPokoj--; }
+    int nastepnaLiczbaRuchow = licznikRuchow;
+
+    if (kierunek == "prawo")
+    { 
+        nastepnyPokoj++;
+        nastepnaLiczbaRuchow++;
+    }
+    else if (kierunek == "lewo") 
+    { 
+        nastepnyPokoj--; 
+        nastepnaLiczbaRuchow++;
+    }
     else
     {
         Console.WriteLine("Nie udalo sie przejsc do tego pokoju");
@@ -199,6 +212,8 @@ void Idz(string kierunek)
     }
     
     pokoj = nastepnyPokoj;
+    licznikRuchow = nastepnaLiczbaRuchow;
+
     Rozejrzyj();
     ZakonczTure();
 }
@@ -261,4 +276,14 @@ void Akcja(string co)
     ZakonczTure();
     
     //Console.WriteLine("TODO C: akcja " + co);
+}
+
+string PasekEnergii()
+{
+    string pasek = "";
+
+    for (int i = 0; i < energia; i++) { pasek += '#'; }
+    for (int i = 0; i < MAKS_ENERGIA - energia; i++) { pasek += '.'; }
+
+    return pasek;
 }
