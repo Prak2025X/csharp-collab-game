@@ -191,9 +191,16 @@ void Idz(string kierunek)
         Console.WriteLine("Nie udalo sie przejsc do tego pokoju");
         return;
     }
-    // TODO B3: odrzuc nieznany kierunek i ruch poza pokoje 1..4.
-    // TODO B4: zatwierdz pokoj, wywolaj Rozejrzyj i raz ZakonczTure.
-    Console.WriteLine("TODO B: ruch " + kierunek);
+    
+    if (nastepnyPokoj < 1 || nastepnyPokoj > 4)
+    {
+        Console.WriteLine("Nie udalo sie przejsc do tego pokoju");
+        return;
+    }
+    
+    pokoj = nastepnyPokoj;
+    Rozejrzyj();
+    ZakonczTure();
 }
 
 // SEKCJA C: PRZEDMIOTY I WYGRANA. Wlasciciel: osoba C.
