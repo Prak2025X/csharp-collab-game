@@ -113,22 +113,22 @@ string NazwaPokoju(int numer)
 
 void Pomoc()
 {
-    Console.WriteLine("/n1. INFORMACJE");
+    Console.WriteLine("\n1. INFORMACJE");
     Console.WriteLine("pomoc - Polecenia i zasady (0 Energii)");
     Console.WriteLine("status - Dane rozgrywki (0 Energii)");
     Console.WriteLine("koniec to wylaczenie programu, a wyjdz to czynnosc w grze");
     Console.WriteLine("Tylko udany ruch lub udana akcja kosztuje 1 energię");
     Console.WriteLine("Informacje, pusty Enter, nieznana komenda, ściana, duplikat przedmiotu i odrzucona akcja są bezpłatne");
-    Console.WriteLine("/n2. RUCH");
+    Console.WriteLine("\n2. RUCH");
     Console.WriteLine("mapa - Cztery pokoje i jeden znacznik pozycji (0 Energii)");
     Console.WriteLine("lewo, prawo - Ruch o jeden pokój (1 Energia)");
-    Console.WriteLine("/n3. PRZEDMIOTY I DZIAŁANIA");
+    Console.WriteLine("\n3. PRZEDMIOTY I DZIAŁANIA");
     Console.WriteLine("karta - Próba zabrania karty (1 Energia)");
     Console.WriteLine("bezpiecznik - Próba zabrania bezpiecznika (1 Energia)");
     Console.WriteLine("wyjdz - Próba otwarcia drzwi (1 Energia)");
     Console.WriteLine("napraw - Próba naprawy zasilania (1 Energia)");
     Console.WriteLine("opis - Rozejrzenie się w aktualnym pokoju (0 Energii)");
-    Console.WriteLine("/n4. STEROWANIE ROZGRYWKĄ");
+    Console.WriteLine("\n4. STEROWANIE ROZGRYWKĄ");
     Console.WriteLine("start - Nowa rozgrywka (0 Energii)");
     Console.WriteLine("koniec - Zamknięcie programu (0 Energii)");
 }
