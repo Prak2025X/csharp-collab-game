@@ -133,7 +133,16 @@ void Mapa()
 {
     for (int numer = 1; numer <= 4; numer++)
     {
-        Console.Write($"{ numer } - { NazwaPokoju(numer) }");
+        Console.Write($"{ numer }. { NazwaPokoju(numer) } - ");
+        
+        switch (numer)
+        {
+            case 1: Console.Write(karta ? "Karty nie ma na stole" : "Karta jest na stole");                                                                     break;
+            case 2: Console.Write((bezpiecznik || zasilanie) ? "Bezpiecznika nie ma na polce" : "Bezpiecznik jest na polce");                                   break;
+            case 3: Console.Write(zasilanie ? "Zasilanie jest wlaczone" : "Zasilanie jest wylaczone");                                                          break;
+            case 4: Console.Write($"{ (karta ? "Masz karte" : "Nie masz karty") } i { (zasilanie ? "zasilanie jest wlaczone" : "zasilanie jest wylaczone") }"); break;
+        }
+        
         if (numer == pokoj) { Console.Write(" <-- jestes tutaj"); }
         Console.Write('\n');
     }
