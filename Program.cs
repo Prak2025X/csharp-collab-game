@@ -96,6 +96,7 @@ void Status()
     Console.WriteLine("Zasilanie: " + zasilanie);
     Console.WriteLine("Koniec: " + koniec);
     Console.WriteLine("Wygrana: " + wygrana);
+    Console.WriteLine($"Ocena energii: { OcenaEnergii(10) }");
 }
 
 // SEKCJA A: INFORMACJE I MAPA. Wlasciciel: osoba A.
@@ -175,6 +176,15 @@ void Rozejrzyj()
                 break;
             }
     }
+
+    if (pokoj > 1) {
+        Console.WriteLine("Następny pokój po lewo: " + NazwaPokoju(pokoj - 1));
+    } 
+    if (pokoj < 4) {
+        Console.WriteLine("Następny pokój po prawo: " + NazwaPokoju(pokoj + 1));
+    }
+    
+    Console.WriteLine(Wskazowka());
 }
 
 // SEKCJA B: RUCH. Wlasciciel: osoba B.
@@ -287,3 +297,55 @@ string PasekEnergii()
 
     return pasek;
 }
+
+string OcenaEnergii(int wartosc) {
+    if (wartosc >= 7 && wartosc <= 10) {
+        return "Duży zapas";
+    } else if (wartosc >= 4 && wartosc <= 6) {
+        return "Uważaj na zbędne ruchy";
+    } else if (wartosc >= 1 && wartosc <= 3) {
+        return "Niski zapas";
+    } else if (wartosc == 0) {
+        return "Brak energii";
+    } else {
+        return "Nieprawidłowa wartość";
+    }
+}
+
+
+string Wskazowka() {
+    if (koniec) {
+        return "Wpisz start, aby zaczac nowa gre, albo koniec, aby zamknac program.";
+    }
+
+    if (pokoj == 2 && !bezpiecznik && !zasilanie) {
+        return "Wskazowka: wpisz bezpiecznik, aby zabrac bezpiecznik z magazynu.";
+    }
+
+    if (pokoj == 3 && bezpiecznik && !zasilanie) {
+        return "Wskazowka: wpisz napraw, aby wlaczyc zasilanie.";
+    }
+.
+    if (!karta) {
+        if (pokoj == 1)
+        {
+            return "Wskazowka: wpisz karta, aby zabrac karte z recepcji.";
+        }
+
+        return "Wskazowka: wroc do recepcji. Wpisz " + (pokoj > 1 ? "lewo" : "prawo") + ".";
+    }
+
+    if (!zasilanie && !bezpiecznik) {
+        return "Wskazowka: idz do magazynu. Wpisz " + (pokoj > 2 ? "lewo" : "prawo") + ".";
+    }
+
+    if (!zasilanie && bezpiecznik) {
+        return "Wskazowka: idz do serwerowni. Wpisz " + (pokoj > 3 ? "lewo" : "prawo") + ".";
+    }
+
+    if (pokoj == 4) {
+        return "Wskazowka: masz karte i zasilanie. Wpisz wyjdz, aby zakonczyc gre.";
+    }
+
+    return "Wskazowka: idz do wyjscia. Wpisz " + (pokoj < 4 ? "prawo" : "lewo") + ".";
+}   
