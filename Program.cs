@@ -84,6 +84,15 @@ void ZakonczTure()
     }
 }
 
+void StatusEtapow()
+{
+    Console.WriteLine("\nStatus etapow: ");
+    Console.WriteLine($"Zdobyto Karte: {karta}");
+    Console.WriteLine($"Zdobyto Bezpiecznik: {bezpiecznik || zasilanie}");
+    Console.WriteLine($"Wlaczono Zasilanie: {zasilanie}");
+    Console.WriteLine($"Wyjscie: {wygrana}");
+}
+
 // Status jest gotowy: sluzy do testow, zanim autor mapy skonczy swoja sekcje.
 void Status()
 {
@@ -96,6 +105,8 @@ void Status()
     Console.WriteLine("Zasilanie: " + zasilanie);
     Console.WriteLine("Koniec: " + koniec);
     Console.WriteLine("Wygrana: " + wygrana);
+
+    StatusEtapow();
 }
 
 // SEKCJA A: INFORMACJE I MAPA. Wlasciciel: osoba A.
