@@ -10,6 +10,7 @@ bool zasilanie = false;
 bool koniec = false;
 bool wygrana = false;
 int licznikRuchow = 0;
+int licznikAkcji = 0;
 
 // SEKCJA 0: GOTOWY SILNIK NAUCZYCIELA. Nie zmieniaj w zadaniu podstawowym.
 Start();
@@ -62,6 +63,8 @@ void Start()
     zasilanie = false;
     koniec = false;
     wygrana = false;
+    licznikRuchow = 0;
+    licznikAkcji = 0;
     Console.WriteLine("UCIECZKA Z SERWEROWNI: PIATEK, 16:59.");
     Console.WriteLine("Administrator napisal: u mnie dziala. Drzwi twierdza inaczej.");
     Console.WriteLine("Masz " + MAKS_ENERGIA + " energii. Wpisz pomoc. Koniec zamyka program.");
@@ -100,6 +103,7 @@ void Status()
     Console.WriteLine("Energia: " + energia + "/" + MAKS_ENERGIA);
     Console.WriteLine($"Pasek energii: { PasekEnergii() }");
     Console.WriteLine($"Liczba Ruchow: { licznikRuchow }");
+    Console.WriteLine($"Liczba Akcji: { licznikAkcji }");
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
     Console.WriteLine("Zasilanie: " + zasilanie);
@@ -255,6 +259,7 @@ void Akcja(string co)
             return;
         }
         karta = true;
+        licznikAkcji++;
         Console.WriteLine("Zabierasz karte.");
     }
 
@@ -264,6 +269,7 @@ void Akcja(string co)
             return;
         }
         bezpiecznik = true;
+        licznikAkcji++;
         Console.WriteLine("Wlaczono bezpiecznik.");
     }
 
@@ -274,6 +280,7 @@ void Akcja(string co)
         }
         bezpiecznik = false;
         zasilanie = true;
+        licznikAkcji++;
         Console.WriteLine("Naprawiono zasilanie.");
     }
 
@@ -284,6 +291,7 @@ void Akcja(string co)
         }
         wygrana = true;
         koniec = true;
+        licznikAkcji++;
         Console.WriteLine("Pomyslnie opuszczono");
     }
 
