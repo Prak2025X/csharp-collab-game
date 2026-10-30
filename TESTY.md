@@ -20,6 +20,8 @@ Każdą próbę zaczynamy od start. Po sekwencji wpisujemy status. Komendy z tab
 | 14 | Po końcu gry: start, status | Pokój 1, energia 10, wszystkie flagi False | Orzel36 |
 | 15 | Wpisz spacje + PRAWO + spacje | Pokój 2, energia 9; wielkość liter i skrajne spacje nie przeszkadzają | Orzel36 |
 | 16 | koniec | Aplikacja wraca do terminala | Orzel36 |
+| 17 | status | Ocena energii - Duży zapas | Orzel36 |
+| 18 | start, prawo | Następny pokój po lewo: Recepcja, Następny pokój po prawo: Serwerownia | Orzel36 |
 
 ## Nasza droga zwycięska
 
