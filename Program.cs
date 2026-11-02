@@ -428,6 +428,21 @@ int PoliczOdkryte(bool[] dane) {
     return wynik;
 }
 
+string KomunikatoryOdkryc() {
+    int liczba = PoliczOdkryte(odwiedzone);
+
+    if (liczba == 1) [
+        return "Dopiero poznajesz budynek.";
+    ] else if (liczba == 2) {
+        return "Znasz juz polowe budynku.";
+    } else if (liczba == 3) {
+        return "Nie znasz tylko jednego pomieszczenia w calym budynku.";
+    } else if (liczba == 4) {
+        return "Znasz caly budynek.";
+    }
+    return "Nie odkryto jeszcze zadnego pokoju.";
+}
+
 void PokazOdkrycia() {
     Console.WriteLine("Odkryte pokoje:");
 
