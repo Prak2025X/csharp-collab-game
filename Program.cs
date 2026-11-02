@@ -109,6 +109,7 @@ void Status()
     Console.WriteLine($"Pasek energii: { PasekEnergii() }");
     Console.WriteLine($"Liczba Ruchow: { licznikRuchow }");
     Console.WriteLine($"Liczba Akcji: { licznikAkcji }");
+    Console.WriteLine($"Odkryte pokoje: {PoliczOdkryte(odwiedzone)}/4");
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
     Console.WriteLine("Zasilanie: " + zasilanie);

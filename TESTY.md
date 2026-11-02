@@ -23,6 +23,16 @@ Każdą próbę zaczynamy od start. Po sekwencji wpisujemy status. Komendy z tab
 | 17 | status | Ocena energii - Duży zapas | Orzel36 |
 | 18 | start, prawo | Następny pokój po lewo: Recepcja, Następny pokój po prawo: Serwerownia | Orzel36 |
 | 19 | start, odkrycia | Odkryte pokoje: 1. Recepcja, Liczba odkrytych pokoi: 1/4 | Orzel36 |
+| 20 | start, odkrycia, mapa, status | Odkryty tylko pokoj 1, 1/4, energia 10, jeden znacznik biezacej pozycji | Orzel36 |
+| 21 | start, prawo, lewo, prawo, odkrycia, status | odkryte 1 i 2, 2/4, pokoj 2, energia 7, powroty nie zwiekszaja liczby roznych pokojow | Orzel36 |
+| 22 | start, prawo, prawo, prawo, odkrycia | 4/4, energia 7| Orzel36 |
+| 23 | start, lewo, gora, pusty  Enter, odkrycia | 1/4, pokoj 1, energia 10| Orzel36 |
+| 24 | start, prawo, odkrycia, mapa, opis, status, odkrycia | 2/4, energia 9| Orzel36 |
+| 25 | Po 22 tescie, start, odkrycia | pokoj 1, energia 10| Orzel36 |
+| 26 | start, piec razy para prawo, lewo, odkrycia, status | Przegrana, pokoj 1, energia 0, 2/4, ruch po koncu nie dziala, odczyt dziala| Orzel36 |
+| 27 | start, karta, prawo, bezpiecznik, prawo, napraw, prawo, wyjdz, odkrycia | Wygrana, energia 3, 4/4| Orzel36 |
+| 28 | start, ODKRYCIA | energia 10| Orzel36 |
+
 
 ## Nasza droga zwycięska
 
