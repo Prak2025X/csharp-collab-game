@@ -247,6 +247,8 @@ void Rozejrzyj()
     }
     
     Console.WriteLine(Wskazowka());
+    Console.WriteLine("Odkrycia budynku: " + PasekOdkryc());
+    Console.WriteLine(KomunikatoryOdkryc());
 }
 
 // SEKCJA B: RUCH. Wlasciciel: osoba B.
@@ -431,9 +433,9 @@ int PoliczOdkryte(bool[] dane) {
 string KomunikatoryOdkryc() {
     int liczba = PoliczOdkryte(odwiedzone);
 
-    if (liczba == 1) [
+    if (liczba == 1) {
         return "Dopiero poznajesz budynek.";
-    ] else if (liczba == 2) {
+    } else if (liczba == 2) {
         return "Znasz juz polowe budynku.";
     } else if (liczba == 3) {
         return "Nie znasz tylko jednego pomieszczenia w calym budynku.";
@@ -441,6 +443,19 @@ string KomunikatoryOdkryc() {
         return "Znasz caly budynek.";
     }
     return "Nie odkryto jeszcze zadnego pokoju.";
+}
+
+string PasekOdkryc() {
+    string pasek = "";
+
+    for (int i=0; i < odwiedzone.Length; i++) {
+        if (odwiedzone[i]) {
+            pasek += "#";
+        } else {
+            pasek += ".";
+        }
+    }
+    return "[" + pasek + "]";
 }
 
 void PokazOdkrycia() {
@@ -453,4 +468,11 @@ void PokazOdkrycia() {
     }
 
     Console.WriteLine("Liczba odkrytych pokoi: " + PoliczOdkryte(odwiedzone) + "/4");
+    Console.WriteLine("Pasek odkryc: " + PasekOdkryc());
+
+    Console.WriteLine(KomunikatoryOdkryc());
+
+    Console.WriteLine("\nLegenda:");
+    Console.WriteLine("# - Pokoj odkryty");
+    Console.WriteLine(". - Pokoj nieodkryty");
 }
