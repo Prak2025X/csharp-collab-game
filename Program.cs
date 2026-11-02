@@ -9,6 +9,7 @@ bool bezpiecznik = false;
 bool zasilanie = false;
 bool koniec = false;
 bool wygrana = false;
+bool[] odwiedzone = new bool[4];
 int licznikRuchow = 0;
 int licznikAkcji = 0;
 
@@ -50,6 +51,7 @@ while (true)
         case "bezpiecznik": Akcja("bezpiecznik"); break;
         case "napraw": Akcja("napraw"); break;
         case "wyjdz": Akcja("wyjdz"); break;
+        case "odkrycia": PokazOdkrycia(); break;
         default: Console.WriteLine("Nieznane polecenie. Wpisz pomoc."); break;
     }
 }
@@ -57,6 +59,8 @@ while (true)
 void Start()
 {
     pokoj = 1;
+    odwiedzone = new bool[4];
+    odwiedzone[0] = true;
     energia = MAKS_ENERGIA;
     karta = false;
     bezpiecznik = false;
@@ -141,6 +145,7 @@ void Pomoc()
         Console.WriteLine("\n1. INFORMACJE");
         Console.WriteLine("pomoc - Polecenia i zasady (0 Energii)");
         Console.WriteLine("status - Dane rozgrywki (0 Energii)");
+        Console.WriteLine("odkrycia - Pokazuje odkryte pokoje (0 energii)");
         Console.WriteLine("koniec to wylaczenie programu, a wyjdz to czynnosc w grze");
         Console.WriteLine("Tylko udany ruch lub udana akcja kosztuje 1 energię");
         Console.WriteLine("Informacje, pusty Enter, nieznana komenda, ściana, duplikat przedmiotu i odrzucona akcja są bezpłatne");
@@ -261,6 +266,7 @@ void Idz(string kierunek)
     }
     
     pokoj = nastepnyPokoj;
+    odwiedzone[pokoj - 1] = true;
     licznikRuchow = nastepnaLiczbaRuchow;
 
     Rozejrzyj();
@@ -392,3 +398,26 @@ string Wskazowka() {
 
     return "Wskazowka: idz do wyjscia. Wpisz " + (pokoj < 4 ? "prawo" : "lewo") + ".";
 }   
+
+int PoliczOdkryte(bool[] dane) {
+    int wynik = 0;
+
+    for (int i = 0; i < dane.Length; i++) {
+        if (dane[i] == true) {
+            wynik++;
+        }
+    }
+    return wynik;
+}
+
+void PokazOdkrycia() {
+    Console.WriteLine("Odkryte pokoje:");
+
+    for(int i = 0; i < odwiedzone.Length; i++) {
+        if (odwiedzone[i] == true) {
+            Console.WriteLine((i + 1) + ". " + NazwaPokoju(i + 1));
+        }
+    }
+
+    Console.WriteLine("Liczba odkrytych pokoi: " + PoliczOdkryte(odwiedzone) + "/4");
+}
