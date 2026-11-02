@@ -60,7 +60,11 @@ while (true)
 void Start()
 {
     pokoj = 1;
-    odwiedzone = new bool[4];
+    // odwiedzone = new bool[4];
+    // odwiedzone[0] = true;
+    for (int i = 0; i < odwiedzone.Length; i++) {
+        odwiedzone[i] = false;
+    }
     odwiedzone[0] = true;
     energia = MAKS_ENERGIA;
     karta = false;
@@ -115,7 +119,7 @@ void Status()
     Console.WriteLine("Zasilanie: " + zasilanie);
     Console.WriteLine("Koniec: " + koniec);
     Console.WriteLine("Wygrana: " + wygrana);
-    Console.WriteLine($"Ocena energii: { OcenaEnergii(10) }");
+    Console.WriteLine($"Ocena energii: { OcenaEnergii(energia) }");
     StatusEtapow();
 }
 
@@ -211,7 +215,7 @@ void Rozejrzyj()
             }
         case 2:
             {
-                if (bezpiecznik) { Console.WriteLine("Bezpiecznika nie ma na polce"); }
+                if (bezpiecznik || zasilanie) { Console.WriteLine("Bezpiecznika nie ma na polce"); }
                 else { Console.WriteLine("Bezpiecznik jest na polce"); }
 
                 break;
