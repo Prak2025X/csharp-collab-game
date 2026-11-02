@@ -10,6 +10,7 @@ bool zasilanie = false;
 bool koniec = false;
 bool wygrana = false;
 bool[] odwiedzone = new bool[4];
+string[] nazwyPokoi = {"Recepcja", "Magazyn", "Serwerownia","Wyjscie"};
 int licznikRuchow = 0;
 int licznikAkcji = 0;
 
@@ -120,14 +121,20 @@ void Status()
 // SEKCJA A: INFORMACJE I MAPA. Wlasciciel: osoba A.
 string NazwaPokoju(int numer)
 {
-    switch (numer)
-    {
-        case 1: { return "Recepcja"; }
-        case 2: { return "Magazyn"; }
-        case 3: { return "Serwerownia"; }
-        case 4: { return "Wyjście"; }
-        default: { return "Nieznane pomieszczenie"; }
-    }
+    // switch (numer)
+    // {
+        // case 1: { return "Recepcja"; }
+        // case 2: { return "Magazyn"; }
+        // case 3: { return "Serwerownia"; }
+        // case 4: { return "Wyjście"; }
+        // default: { return "Nieznane pomieszczenie"; }
+    // }
+
+        if (numer < 1 || numer > nazwyPokoi.Length) {
+            return "Nieznane pomieszczenie";
+        }
+
+        return nazwyPokoi[numer - 1];
 }
 
 void Pomoc()
@@ -170,6 +177,12 @@ void Mapa()
     for (int numer = 1; numer <= 4; numer++)
     {
         Console.Write($"{ numer }. { NazwaPokoju(numer) } - ");
+
+        if (odwiedzone[numer - 1]) {
+            Console.Write("Odkryty"  + ", ");
+        } else {
+            Console.Write("Nieodkryty" + ", ");
+        }
         
         switch (numer)
         {

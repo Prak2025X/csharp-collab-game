@@ -22,6 +22,7 @@ Każdą próbę zaczynamy od start. Po sekwencji wpisujemy status. Komendy z tab
 | 16 | koniec | Aplikacja wraca do terminala | Orzel36 |
 | 17 | status | Ocena energii - Duży zapas | Orzel36 |
 | 18 | start, prawo | Następny pokój po lewo: Recepcja, Następny pokój po prawo: Serwerownia | Orzel36 |
+| 19 | start, odkrycia | Odkryte pokoje: 1. Recepcja, Liczba odkrytych pokoi: 1/4 | Orzel36 |
 
 ## Nasza droga zwycięska
 
