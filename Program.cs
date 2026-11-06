@@ -316,12 +316,12 @@ void Akcja(string co)
 
     else if (co == "bezpiecznik") {
         if (pokoj != 2 || bezpiecznik || zasilanie) {
-            Console.WriteLine("Nie mozna wlaczyc bezpiecznika.");
+            Console.WriteLine("Nie mozna zabrac bezpiecznika.");
             return;
         }
         bezpiecznik = true;
         licznikAkcji++;
-        Console.WriteLine("Wlaczono bezpiecznik.");
+        Console.WriteLine("Zabrano bezpiecznik.");
     }
 
     else if (co == "napraw") {
