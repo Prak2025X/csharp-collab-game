@@ -4,34 +4,34 @@ Każdą próbę zaczynamy od start. Po sekwencji wpisujemy status. Komendy z tab
 
 | Nr | Próba i komendy po start | Oczekiwane | Otrzymane / osoba |
 |---|---|---|---|
-| 1 | mapa, pomoc, opis, status | 4 pokoje, 1 znacznik przy recepcji; energia 10 | Orzel36 |
-| 2 | lewo, gora, pusty Enter | Pokój 1, energia 10 | Orzel36 |
-| 3 | prawo | Pokój 2, energia 9 | Orzel36 |
-| 4 | prawo, prawo, prawo, prawo | Pokój 4, energia 7; ostatni ruch odrzucony | Orzel36 |
-| 5 | karta, karta | Karta True, energia 9 | Orzel36 |
-| 6 | bezpiecznik | Bezpiecznik False, energia 10 | Orzel36 |
-| 7 | prawo, prawo, napraw | Pokój 3, energia 8, zasilanie False | Orzel36 |
-| 8 | karta, prawo, prawo, prawo, wyjdz | Brak zasilania; pokój 4, energia 6, koniec False | Orzel36 |
-| 9 | prawo, bezpiecznik, prawo, napraw, prawo, wyjdz | Brak karty; pokój 4, energia 5, koniec False | Orzel36 |
-| 10 | karta, prawo, bezpiecznik, prawo, napraw, lewo, bezpiecznik | Energia 4, zasilanie True, bezpiecznik False; nie odradza się | Orzel36 |
-| 11 | Znajdźcie drogę zwycięską i zapiszcie ją poniżej | Jedna wygrana, bez jednoczesnej przegranej | Orzel36 |
-| 12 | Pięć razy para prawo, lewo | Pokój 1, energia 0, koniec True, wygrana False | Orzel36 |
-| 13 | Po próbie 12: prawo, karta, status | Stan nie zmienia się; informacje nadal działają | Orzel36 |
-| 14 | Po końcu gry: start, status | Pokój 1, energia 10, wszystkie flagi False | Orzel36 |
-| 15 | Wpisz spacje + PRAWO + spacje | Pokój 2, energia 9; wielkość liter i skrajne spacje nie przeszkadzają | Orzel36 |
-| 16 | koniec | Aplikacja wraca do terminala | Orzel36 |
-| 17 | status | Ocena energii - Duży zapas | Orzel36 |
-| 18 | start, prawo | Następny pokój po lewo: Recepcja, Następny pokój po prawo: Serwerownia | Orzel36 |
-| 19 | start, odkrycia | Odkryte pokoje: 1. Recepcja, Liczba odkrytych pokoi: 1/4 | Orzel36 |
-| 20 | start, odkrycia, mapa, status | Odkryty tylko pokoj 1, 1/4, energia 10, jeden znacznik biezacej pozycji | Orzel36 |
-| 21 | start, prawo, lewo, prawo, odkrycia, status | odkryte 1 i 2, 2/4, pokoj 2, energia 7, powroty nie zwiekszaja liczby roznych pokojow | Orzel36 |
-| 22 | start, prawo, prawo, prawo, odkrycia | 4/4, energia 7| Orzel36 |
-| 23 | start, lewo, gora, pusty  Enter, odkrycia | 1/4, pokoj 1, energia 10| Orzel36 |
-| 24 | start, prawo, odkrycia, mapa, opis, status, odkrycia | 2/4, energia 9| Orzel36 |
-| 25 | Po 22 tescie, start, odkrycia | pokoj 1, energia 10| Orzel36 |
-| 26 | start, piec razy para prawo, lewo, odkrycia, status | Przegrana, pokoj 1, energia 0, 2/4, ruch po koncu nie dziala, odczyt dziala| Orzel36 |
-| 27 | start, karta, prawo, bezpiecznik, prawo, napraw, prawo, wyjdz, odkrycia | Wygrana, energia 3, 4/4| Orzel36 |
-| 28 | start, ODKRYCIA | energia 10| Orzel36 |
+| 1 | mapa, pomoc, opis, status | 4 pokoje, 1 znacznik przy recepcji; energia 10 | Zgodnie z oczekiwaniem/Orzel36 |
+| 2 | lewo, gora, pusty Enter | Pokój 1, energia 10 | Zgodnie z oczekiwaniem/Orzel36 |
+| 3 | prawo | Pokój 2, energia 9 | Zgodnie z oczekiwaniem/Orzel36 |
+| 4 | prawo, prawo, prawo, prawo | Pokój 4, energia 7; ostatni ruch odrzucony | Zgodnie z oczekiwaniem/Orzel36 |
+| 5 | karta, karta | Karta True, energia 9 | Zgodnie z oczekiwaniem/Orzel36 |
+| 6 | bezpiecznik | Bezpiecznik False, energia 10 | Zgodnie z oczekiwaniem/Orzel36 |
+| 7 | prawo, prawo, napraw | Pokój 3, energia 8, zasilanie False | Zgodnie z oczekiwaniem/Orzel36 |
+| 8 | karta, prawo, prawo, prawo, wyjdz | Brak zasilania; pokój 4, energia 6, koniec False | Zgodnie z oczekiwaniem/Orzel36 |
+| 9 | prawo, bezpiecznik, prawo, napraw, prawo, wyjdz | Brak karty; pokój 4, energia 5, koniec False | Zgodnie z oczekiwaniem/Orzel36 |
+| 10 | karta, prawo, bezpiecznik, prawo, napraw, lewo, bezpiecznik | Energia 4, zasilanie True, bezpiecznik False; nie odradza się | Zgodnie z oczekiwaniem/Orzel36 |
+| 11 | Znajdźcie drogę zwycięską i zapiszcie ją poniżej | Jedna wygrana, bez jednoczesnej przegranej | Zgodnie z oczekiwaniem/Orzel36 |
+| 12 | Pięć razy para prawo, lewo | Pokój 1, energia 0, koniec True, wygrana False | Zgodnie z oczekiwaniem/Orzel36 |
+| 13 | Po próbie 12: prawo, karta, status | Stan nie zmienia się; informacje nadal działają | Zgodnie z oczekiwaniem/Orzel36 |
+| 14 | Po końcu gry: start, status | Pokój 1, energia 10, wszystkie flagi False | Zgodnie z oczekiwaniem/Orzel36 |
+| 15 | Wpisz spacje + PRAWO + spacje | Pokój 2, energia 9; wielkość liter i skrajne spacje nie przeszkadzają | Zgodnie z oczekiwaniem/Orzel36 |
+| 16 | koniec | Aplikacja wraca do terminala | Zgodnie z oczekiwaniem/Orzel36 |
+| 17 | status | Ocena energii - Duży zapas | Zgodnie z oczekiwaniem/Orzel36 |
+| 18 | start, prawo | Następny pokój po lewo: Recepcja, Następny pokój po prawo: Serwerownia | Zgodnie z oczekiwaniem/Orzel36 |
+| 19 | start, odkrycia | Odkryte pokoje: 1. Recepcja, Liczba odkrytych pokoi: 1/4 | Zgodnie z oczekiwaniem/Orzel36 |
+| 20 | start, odkrycia, mapa, status | Odkryty tylko pokoj 1, 1/4, energia 10, jeden znacznik biezacej pozycji | Zgodnie z oczekiwaniem/Orzel36 |
+| 21 | start, prawo, lewo, prawo, odkrycia, status | odkryte 1 i 2, 2/4, pokoj 2, energia 7, powroty nie zwiekszaja liczby roznych pokojow | Zgodnie z oczekiwaniem/Orzel36 |
+| 22 | start, prawo, prawo, prawo, odkrycia | 4/4, energia 7| Zgodnie z oczekiwaniem/Orzel36 |
+| 23 | start, lewo, gora, pusty  Enter, odkrycia | 1/4, pokoj 1, energia 10| Zgodnie z oczekiwaniem/Orzel36 |
+| 24 | start, prawo, odkrycia, mapa, opis, status, odkrycia | 2/4, energia 9| Zgodnie z oczekiwaniem/Orzel36 |
+| 25 | Po 22 tescie, start, odkrycia | pokoj 1, energia 10| Zgodnie z oczekiwaniem/Orzel36 |
+| 26 | start, piec razy para prawo, lewo, odkrycia, status | Przegrana, pokoj 1, energia 0, 2/4, ruch po koncu nie dziala, odczyt dziala| Zgodnie z oczekiwaniem/Orzel36 |
+| 27 | start, karta, prawo, bezpiecznik, prawo, napraw, prawo, wyjdz, odkrycia | Wygrana, energia 3, 4/4| Zgodnie z oczekiwaniem/Orzel36 |
+| 28 | start, ODKRYCIA | energia 10| Zgodnie z oczekiwaniem/Orzel36 |
 
 
 ## Nasza droga zwycięska
