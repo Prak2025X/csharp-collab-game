@@ -476,3 +476,18 @@ void PokazOdkrycia() {
     Console.WriteLine("# - Pokoj odkryty");
     Console.WriteLine(". - Pokoj nieodkryty");
 }
+
+class DziennikWyprawy
+{
+    private string[] udaneCzynnosci;
+
+    public DziennikWyprawy()
+    {
+        udaneCzynnosci = [];
+    }
+
+    public void Dziennik()
+    {
+        
+    }
+}
