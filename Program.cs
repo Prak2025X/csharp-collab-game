@@ -60,12 +60,7 @@ while (true)
 void Start()
 {
     pokoj = 1;
-    // odwiedzone = new bool[4];
-    // odwiedzone[0] = true;
-    for (int i = 0; i < odwiedzone.Length; i++) {
-        odwiedzone[i] = false;
-    }
-    odwiedzone[0] = true;
+    dziennik.Reset();
     energia = MAKS_ENERGIA;
     karta = false;
     bezpiecznik = false;
@@ -113,7 +108,7 @@ void Status()
     Console.WriteLine($"Pasek energii: { PasekEnergii() }");
     Console.WriteLine($"Liczba Ruchow: { licznikRuchow }");
     Console.WriteLine($"Liczba Akcji: { licznikAkcji }");
-    Console.WriteLine($"Odkryte pokoje: {PoliczOdkryte(odwiedzone)}/4");
+    Console.WriteLine($"Odkryte pokoje: {dziennik.LiczbaOdwiedzonych}/4");
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
     Console.WriteLine("Zasilanie: " + zasilanie);
@@ -183,10 +178,10 @@ void Mapa()
     {
         Console.Write($"{ numer }. { NazwaPokoju(numer) } - ");
 
-        if (odwiedzone[numer - 1]) {
-            Console.Write("Odkryty"  + ", ");
+        if (dziennik.CzyOdwiedzono(numer)) {
+            Console.Write("Odkryty, ");
         } else {
-            Console.Write("Nieodkryty" + ", ");
+            Console.Write("Nieodkryty, ");
         }
         
         switch (numer)
@@ -286,7 +281,7 @@ void Idz(string kierunek)
     }
     
     pokoj = nastepnyPokoj;
-    odwiedzone[pokoj - 1] = true;
+    dziennik.Odwiedz(pokoj);
     licznikRuchow = nastepnaLiczbaRuchow;
 
     Rozejrzyj();
@@ -419,19 +414,8 @@ string Wskazowka() {
     return "Wskazowka: idz do wyjscia. Wpisz " + (pokoj < 4 ? "prawo" : "lewo") + ".";
 }   
 
-int PoliczOdkryte(bool[] dane) {
-    int wynik = 0;
-
-    for (int i = 0; i < dane.Length; i++) {
-        if (dane[i] == true) {
-            wynik++;
-        }
-    }
-    return wynik;
-}
-
 string KomunikatoryOdkryc() {
-    int liczba = PoliczOdkryte(odwiedzone);
+    int liczba = dziennik.LiczbaOdwiedzonych;
 
     if (liczba == 1) {
         return "Dopiero poznajesz budynek.";
@@ -448,8 +432,8 @@ string KomunikatoryOdkryc() {
 string PasekOdkryc() {
     string pasek = "";
 
-    for (int i=0; i < odwiedzone.Length; i++) {
-        if (odwiedzone[i]) {
+    for (int i = 1; i <= 4; i++) {
+        if (dziennik.CzyOdwiedzono(i)) {
             pasek += "#";
         } else {
             pasek += ".";
@@ -461,13 +445,13 @@ string PasekOdkryc() {
 void PokazOdkrycia() {
     Console.WriteLine("Odkryte pokoje:");
 
-    for(int i = 0; i < odwiedzone.Length; i++) {
-        if (odwiedzone[i] == true) {
-            Console.WriteLine((i + 1) + ". " + NazwaPokoju(i + 1));
+    for(int i = 1; i <= 4; i++) {
+        if (dziennik.CzyOdwiedzono(i)) {
+            Console.WriteLine(i + ". " + NazwaPokoju(i));
         }
     }
 
-    Console.WriteLine("Liczba odkrytych pokoi: " + PoliczOdkryte(odwiedzone) + "/4");
+    Console.WriteLine("Liczba odkrytych pokoi: " + dziennik.LiczbaOdwiedzonych + "/4");
     Console.WriteLine("Pasek odkryc: " + PasekOdkryc());
 
     Console.WriteLine(KomunikatoryOdkryc());
@@ -490,11 +474,11 @@ class DziennikWyprawy
     }
 
     public void Reset() {
-        for (int i = 0; i < odwiedzone.Length; i++) {
+        for (int i = 0; i < _odwiedzone.Length; i++) {
             _odwiedzone[i] = false;
         }
 
-        _odwiedzone[i] = true;
+        _odwiedzone[0] = true;
 
         for (int i = 0; i <_wpisy.Length; i++) {
             _wpisy[i] = "";
