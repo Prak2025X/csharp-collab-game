@@ -9,7 +9,7 @@ bool bezpiecznik = false;
 bool zasilanie = false;
 bool koniec = false;
 bool wygrana = false;
-bool[] odwiedzone = new bool[4];
+DziennikWyprawy dziennik = new DziennikWyprawy();
 string[] nazwyPokoi = {"Recepcja", "Magazyn", "Serwerownia","Wyjscie"};
 int licznikRuchow = 0;
 int licznikAkcji = 0;
@@ -479,15 +479,57 @@ void PokazOdkrycia() {
 
 class DziennikWyprawy
 {
-    private string[] udaneCzynnosci;
+    private bool[] _odwiedzone = new bool[4];
 
-    public DziennikWyprawy()
-    {
-        udaneCzynnosci = [];
+    private string[] _wpisy = {"", "", ""};
+
+    public int LiczbaWpisow {get; private set;}
+
+    public DziennikWyprawy() {
+        Reset();
     }
 
-    public void Dziennik()
-    {
-        
+    public void Reset() {
+        for (int i = 0; i < odwiedzone.Length; i++) {
+            _odwiedzone[i] = false;
+        }
+
+        _odwiedzone[i] = true;
+
+        for (int i = 0; i <_wpisy.Length; i++) {
+            _wpisy[i] = "";
+        }
+
+        LiczbaWpisow = 0;
+    }
+
+    public void Odwiedz (int numer) {
+        if (numer < 1 || numer > 4) {
+            return;
+        }
+
+        _odwiedzone[numer - 1] = true;
+    }
+
+    public bool CzyOdwiedzono (int numer) {
+        if (numer < 1 || numer > 4) {
+            return false;
+        }
+
+        return _odwiedzone[numer - 1];
+    }
+
+    public int LiczbaOdwiedzonych {
+        get {
+            int wynik = 0;
+
+            for (int i = 0; i < _odwiedzone.Length; i++) {
+                if (_odwiedzone[i]) {
+                    wynik++;
+                }
+            }
+
+            return wynik;
+        }
     }
 }
