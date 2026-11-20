@@ -1,46 +1,41 @@
 using System;
 
-// WSPOLNY KONTRAKT. Wszystkie dane inicjalizujemy przed Start().
 const int MAKS_ENERGIA = 10;
+
 int pokoj = 1;
 int energia = MAKS_ENERGIA;
+int licznikRuchow = 0;
+int licznikAkcji = 0;
 bool karta = false;
 bool bezpiecznik = false;
 bool zasilanie = false;
 bool koniec = false;
 bool wygrana = false;
-DziennikWyprawy dziennik = new DziennikWyprawy();
 string[] nazwyPokoi = {"Recepcja", "Magazyn", "Serwerownia","Wyjscie"};
-int licznikRuchow = 0;
-int licznikAkcji = 0;
 
-// SEKCJA 0: GOTOWY SILNIK NAUCZYCIELA. Nie zmieniaj w zadaniu podstawowym.
+DziennikWyprawy dziennik = new DziennikWyprawy();
+
 Start();
-while (true)
-{
+
+while (true) {
     Console.Write("> ");
     string? wejscie = Console.ReadLine();
-    if (wejscie == null)
-    {
+    if (wejscie == null) {
         Console.WriteLine("Koniec wejscia. Zamykam program.");
         break;
     }
 
     string polecenie = wejscie.Trim().ToLowerInvariant();
-    if (polecenie == "koniec")
-    {
+    if (polecenie == "koniec") {
         Console.WriteLine("Do zobaczenia!");
         break;
     }
-    if (polecenie == "")
-    {
+    if (polecenie == "") {
         Console.WriteLine("Wpisz polecenie albo pomoc.");
         continue;
     }
 
-    // Rozdzielacz dziala od poczatku, zeby zespoly mogly testowac niezaleznie.
-    switch (polecenie)
-    {
+    switch (polecenie) {
         case "start": Start(); break;
         case "pomoc": Pomoc(); break;
         case "status": Status(); break;
@@ -57,42 +52,36 @@ while (true)
     }
 }
 
-void Start()
-{
+void Start() {
     pokoj = 1;
-    dziennik.Reset();
+    licznikRuchow = 0;
+    licznikAkcji = 0;
     energia = MAKS_ENERGIA;
     karta = false;
     bezpiecznik = false;
     zasilanie = false;
     koniec = false;
     wygrana = false;
-    licznikRuchow = 0;
-    licznikAkcji = 0;
+    dziennik.Reset();
+    Rozejrzyj();
     Console.WriteLine("UCIECZKA Z SERWEROWNI: PIATEK, 16:59.");
     Console.WriteLine("Administrator napisal: u mnie dziala. Drzwi twierdza inaczej.");
     Console.WriteLine("Masz " + MAKS_ENERGIA + " energii. Wpisz pomoc. Koniec zamyka program.");
-    Rozejrzyj();
 }
 
-void ZakonczTure()
-{
+void ZakonczTure() {
     energia = energia - 1;
     Console.WriteLine("Pozostala energia: " + energia);
-    if (wygrana)
-    {
+    if (wygrana) {
         koniec = true;
         Console.WriteLine("WYGRANA! Drzwi otwarte. Weekend uratowany.");
-    }
-    else if (energia <= 0)
-    {
+    } else if (energia <= 0) {
         koniec = true;
         Console.WriteLine("PRZEGRANA. Energia sie skonczyla. Wpisz start albo koniec.");
     }
 }
 
-void StatusEtapow()
-{
+void StatusEtapow() {
     Console.WriteLine("\nStatus etapow: ");
     Console.WriteLine($"Zdobyto Karte: {karta}");
     Console.WriteLine($"Zdobyto Bezpiecznik: {bezpiecznik || zasilanie}");
@@ -100,9 +89,7 @@ void StatusEtapow()
     Console.WriteLine($"Wyjscie: {wygrana}");
 }
 
-// Status jest gotowy: sluzy do testow, zanim autor mapy skonczy swoja sekcje.
-void Status()
-{
+void Status() {
     Console.WriteLine("Pokoj: " + pokoj);
     Console.WriteLine("Energia: " + energia + "/" + MAKS_ENERGIA);
     Console.WriteLine($"Pasek energii: { PasekEnergii() }");
@@ -118,37 +105,20 @@ void Status()
     StatusEtapow();
 }
 
-// SEKCJA A: INFORMACJE I MAPA. Wlasciciel: osoba A.
-string NazwaPokoju(int numer)
-{
-    // switch (numer)
-    // {
-        // case 1: { return "Recepcja"; }
-        // case 2: { return "Magazyn"; }
-        // case 3: { return "Serwerownia"; }
-        // case 4: { return "Wyjście"; }
-        // default: { return "Nieznane pomieszczenie"; }
-    // }
+string NazwaPokoju(int numer) {
+    if (numer < 1 || numer > nazwyPokoi.Length) {
+        return "Nieznane pomieszczenie";
+    }
 
-        if (numer < 1 || numer > nazwyPokoi.Length) {
-            return "Nieznane pomieszczenie";
-        }
-
-        return nazwyPokoi[numer - 1];
+    return nazwyPokoi[numer - 1];
 }
 
-void Pomoc()
-{
-    if(energia == 0)
-    {
+void Pomoc() {
+    if(energia == 0) {
         Console.WriteLine("Masz 0 energii. Aby zresetować podejście wpisz 'start'.");
-    }
-    else if(wygrana == true)
-    {
+    } else if(wygrana == true) {
         Console.WriteLine("Wygrałeś. Aby zresetować podejście wpisz 'start'.");
-    }
-    else
-    {
+    } else {
         Console.WriteLine("\n1. INFORMACJE");
         Console.WriteLine("pomoc - Polecenia i zasady (0 Energii)");
         Console.WriteLine("status - Dane rozgrywki (0 Energii)");
@@ -169,11 +139,9 @@ void Pomoc()
         Console.WriteLine("start - Nowa rozgrywka (0 Energii)");
         Console.WriteLine("koniec - Zamknięcie programu (0 Energii)");
     }
-   
 }
 
-void Mapa()
-{
+void Mapa() {
     for (int numer = 1; numer <= 4; numer++)
     {
         Console.Write($"{ numer }. { NazwaPokoju(numer) } - ");
@@ -184,8 +152,7 @@ void Mapa()
             Console.Write("Nieodkryty, ");
         }
         
-        switch (numer)
-        {
+        switch (numer) {
             case 1: Console.Write(karta ? "Karty nie ma na stole" : "Karta jest na stole");                                                                     break;
             case 2: Console.Write((bezpiecznik || zasilanie) ? "Bezpiecznika nie ma na polce" : "Bezpiecznik jest na polce");                                   break;
             case 3: Console.Write(zasilanie ? "Zasilanie jest wlaczone" : "Zasilanie jest wylaczone");                                                          break;
@@ -197,33 +164,28 @@ void Mapa()
     }
 }
 
-void Rozejrzyj()
-{
+void Rozejrzyj() {
     Console.WriteLine("Jestes w: " + NazwaPokoju(pokoj));
-    switch (pokoj)
-    {
-        case 1:
-            {
+    switch (pokoj) {
+        case 1: {
                 if (karta) { Console.WriteLine("Karty nie ma na biurku"); }
                 else { Console.WriteLine("Karta jest na biurku"); }
+
                 break;
             }
-        case 2:
-            {
+        case 2: {
                 if (bezpiecznik || zasilanie) { Console.WriteLine("Bezpiecznika nie ma na polce"); }
                 else { Console.WriteLine("Bezpiecznik jest na polce"); }
 
                 break;
             }
-        case 3:
-            {
+        case 3: {
                 if (zasilanie) { Console.WriteLine("Zasilanie jest wlaczone"); }
                 else { Console.WriteLine("Zasilanie jest wylaczone"); }
 
                 break;
             }
-        case 4:
-            {
+        case 4: {
                 if (karta) { Console.WriteLine("Masz karte"); }
                 else { Console.WriteLine("Nie masz karty"); }
 
@@ -246,11 +208,8 @@ void Rozejrzyj()
     Console.WriteLine(KomunikatoryOdkryc());
 }
 
-// SEKCJA B: RUCH. Wlasciciel: osoba B.
-void Idz(string kierunek)
-{
-    if (koniec)
-    {
+void Idz(string kierunek) {
+    if (koniec) {
         Console.WriteLine("Koniec gry");
         return;
     }
@@ -258,24 +217,18 @@ void Idz(string kierunek)
     int nastepnyPokoj = pokoj;
     int nastepnaLiczbaRuchow = licznikRuchow;
 
-    if (kierunek == "prawo")
-    { 
+    if (kierunek == "prawo") { 
         nastepnyPokoj++;
         nastepnaLiczbaRuchow++;
-    }
-    else if (kierunek == "lewo") 
-    { 
+    } else if (kierunek == "lewo")  { 
         nastepnyPokoj--; 
         nastepnaLiczbaRuchow++;
-    }
-    else
-    {
+    } else {
         Console.WriteLine("Nie udalo sie przejsc do tego pokoju");
         return;
     }
     
-    if (nastepnyPokoj < 1 || nastepnyPokoj > 4)
-    {
+    if (nastepnyPokoj < 1 || nastepnyPokoj > 4) {
         Console.WriteLine("Nie udalo sie przejsc do tego pokoju");
         return;
     }
@@ -288,72 +241,59 @@ void Idz(string kierunek)
     ZakonczTure();
 }
 
-// SEKCJA C: PRZEDMIOTY I WYGRANA. Wlasciciel: osoba C.
-void Akcja(string co)
-{
-    // TODO C1: odrzuc akcje po zakonczeniu gry.
+void Akcja(string co) {
     if (koniec) {
         Console.WriteLine("Gra została już zakończona. Nie można wykonać akcji.");
         return;
     }
 
-    // TODO C2: obsluz karta, bezpiecznik, napraw, wyjdz zgodnie z kontraktem.
-    // TODO C3: przy odmowie wypisz powod i wykonaj return.
     if (co == "karta") {
         if (pokoj != 1 || karta) {
             Console.WriteLine("Tutaj nie ma karty do zabrania.");
             return;
         }
+
         karta = true;
         licznikAkcji++;
         Console.WriteLine("Zabierasz karte.");
-    }
-
-    else if (co == "bezpiecznik") {
+    } else if (co == "bezpiecznik") {
         if (pokoj != 2 || bezpiecznik || zasilanie) {
             Console.WriteLine("Nie mozna zabrac bezpiecznika.");
             return;
         }
+
         bezpiecznik = true;
         licznikAkcji++;
         Console.WriteLine("Zabrano bezpiecznik.");
-    }
-
-    else if (co == "napraw") {
+    } else if (co == "napraw") {
         if (pokoj != 3 || bezpiecznik == false || zasilanie == true) {
             Console.WriteLine("Nie mozna naprawic zasilania.");
             return;
         }
+
         bezpiecznik = false;
         zasilanie = true;
         licznikAkcji++;
         Console.WriteLine("Naprawiono zasilanie.");
-    }
-
-    else if (co == "wyjdz") {
+    } else if (co == "wyjdz") {
         if (pokoj != 4 || !karta || !zasilanie) {
             Console.WriteLine("Nie mozesz wyjsc. Potrzebujesz karty i zasilania w pokoju 4.");
             return;
         }
+
         wygrana = true;
         koniec = true;
         licznikAkcji++;
         Console.WriteLine("Pomyslnie opuszczono");
-    }
-
-    else {
+    } else {
         Console.WriteLine("Nieznana akcja: " + co);
         return;
     }
 
-    // TODO C4: tylko po udanej akcji wywolaj raz ZakonczTure.
     ZakonczTure();
-    
-    //Console.WriteLine("TODO C: akcja " + co);
 }
 
-string PasekEnergii()
-{
+string PasekEnergii() {
     string pasek = "";
 
     for (int i = 0; i < energia; i++) { pasek += '#'; }
@@ -426,6 +366,7 @@ string KomunikatoryOdkryc() {
     } else if (liczba == 4) {
         return "Znasz caly budynek.";
     }
+
     return "Nie odkryto jeszcze zadnego pokoju.";
 }
 
@@ -459,61 +400,4 @@ void PokazOdkrycia() {
     Console.WriteLine("\nLegenda:");
     Console.WriteLine("# - Pokoj odkryty");
     Console.WriteLine(". - Pokoj nieodkryty");
-}
-
-class DziennikWyprawy
-{
-    private bool[] _odwiedzone = new bool[4];
-
-    private string[] _wpisy = {"", "", ""};
-
-    public int LiczbaWpisow {get; private set;}
-
-    public DziennikWyprawy() {
-        Reset();
-    }
-
-    public void Reset() {
-        for (int i = 0; i < _odwiedzone.Length; i++) {
-            _odwiedzone[i] = false;
-        }
-
-        _odwiedzone[0] = true;
-
-        for (int i = 0; i <_wpisy.Length; i++) {
-            _wpisy[i] = "";
-        }
-
-        LiczbaWpisow = 0;
-    }
-
-    public void Odwiedz (int numer) {
-        if (numer < 1 || numer > 4) {
-            return;
-        }
-
-        _odwiedzone[numer - 1] = true;
-    }
-
-    public bool CzyOdwiedzono (int numer) {
-        if (numer < 1 || numer > 4) {
-            return false;
-        }
-
-        return _odwiedzone[numer - 1];
-    }
-
-    public int LiczbaOdwiedzonych {
-        get {
-            int wynik = 0;
-
-            for (int i = 0; i < _odwiedzone.Length; i++) {
-                if (_odwiedzone[i]) {
-                    wynik++;
-                }
-            }
-
-            return wynik;
-        }
-    }
 }
